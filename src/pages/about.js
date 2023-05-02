@@ -11,7 +11,7 @@ function about() {
         src="/starterspokemon.png"
         width="350"
         height="350"
-        alt="Pokemons to pag about"
+        alt="Pokemons starters"
       />
     </div>
   );
