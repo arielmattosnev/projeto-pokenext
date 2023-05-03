@@ -1,19 +1,26 @@
 export async function getStaticProps() {
   const maxPokemons = 251;
 
-  const res = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/?offset=20&limit=${maxPokemons}`
-  );
+  try {
+    const res = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${maxPokemons}`
+    );
+    const data = await res.json();
 
-  const data = await res.json();
+    const getPokemons = data.results;
 
-  const getPokemons = data.results;
-
-  return {
-    props: {
-      pokemons: getPokemons,
-    },
-  };
+    return {
+      props: {
+        pokemons: getPokemons,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        error: "An ERROR ocourred on the fetch",
+      },
+    };
+  }
 }
 
 export default function Home({ pokemons }) {
