@@ -17,7 +17,7 @@ export async function getStaticProps() {
   } catch (error) {
     return {
       props: {
-        error: "An ERROR ocourred on the fetch",
+        error: "An ERROR occourred on the fetch",
       },
     };
   }
