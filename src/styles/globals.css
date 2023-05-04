@@ -14,3 +14,9 @@
     min-height: 80vh;
   }
 }
+
+@layer components {
+  .pokemon_container {
+    max-width: 1100px;
+  }
+}

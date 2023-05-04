@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export async function getStaticProps() {
   const maxPokemons = 251;
 
@@ -25,15 +27,23 @@ export async function getStaticProps() {
 
 export default function Home({ pokemons }) {
   return (
-    <div>
-      <main className="text-xl">
-        <h1>Meu projeto da pokedex em nextjs</h1>
-        <ul>
-          {pokemons.map((pokemon) => (
-            <li key={pokemon.id}>{pokemon.name}</li>
-          ))}
-        </ul>
-      </main>
-    </div>
+    <>
+      <div className="text-3xl flex items-center justify-center gap-1 my-6">
+        <h1 className="text-red-700 font-bold">
+          Poke<span className="text-black">Next</span>
+        </h1>
+        <Image
+          src="/Pokeball.svg"
+          height="45"
+          width="45"
+          alt="Pokeball image"
+        />
+      </div>
+      <div className="flex flex-wrap justify-between items-center pokemon_container m-auto">
+        {pokemons.map((pokemon) => (
+          <p key={pokemon.id}>{pokemon.name}</p>
+        ))}
+      </div>
+    </>
   );
 }
