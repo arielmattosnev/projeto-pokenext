@@ -1,3 +1,7 @@
+import Image from "next/image";
+
+import styles from "../../styles/PokemonType.module.css";
+
 export async function getStaticPaths() {
   const maxPokemons = 251;
 
@@ -31,7 +35,46 @@ export async function getStaticProps(context) {
 }
 
 function Pokemons({ pokemon }) {
-  return <p>{pokemon.name}</p>;
+  return (
+    <div className="flex flex-col items-center justify-center p-4">
+      <h1 className="text-3xl font-bold uppercase bg-red-700 text-white p-4 rounded-xl">
+        {pokemon.name}
+      </h1>
+      <Image
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png `}
+        width="180"
+        height="180"
+        alt="pokemon image"
+      />
+      <div className="flex flex-col items-center justify-center font-bold text-xl">
+        <div className="flex gap-1">
+          <h3>Número na Pokedex:</h3>
+          <p>{pokemon.id}</p>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-1">
+          <h3>Tipo:</h3>
+          {pokemon.types.map((item, index) => (
+            <span
+              key={index}
+              className={`${styles.type} ${styles["type_" + item.type.name]}`}
+            >
+              {item.type.name}
+            </span>
+          ))}
+        </div>
+        <div>
+          <div className="flex gap-1">
+            <h4>Altura:</h4>
+            <p>{pokemon.height * 10} cm</p>
+          </div>
+          <div className="flex gap-1">
+            <h4>Peso:</h4>
+            <p>{pokemon.weight} kg</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Pokemons;
