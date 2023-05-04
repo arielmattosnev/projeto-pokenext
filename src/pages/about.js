@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-function about() {
+function About() {
   return (
     <div className="main-container con flex flex-col items-center justify-center gap-6 ">
       <h1 className="text-4xl">Sobre o projeto:</h1>
@@ -18,4 +18,4 @@ function about() {
   );
 }
 
-export default about;
+export default About;
