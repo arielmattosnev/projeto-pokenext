@@ -13,7 +13,7 @@ const Card = ({ pokemon }) => {
       <p className="text-lg">#{pokemon.id}</p>
       <h3 className="text-lg font-bold uppercase">{pokemon.name}</h3>
       <Link href={`/pokemon/${pokemon.id}`}>
-        <span className="underline hover:text-red-700">Detalhes</span>
+        <span className="underline text-blue-600 hover:text-blue-900">Detalhes</span>
       </Link>
     </div>
   );
