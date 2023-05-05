@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import styles from "../../styles/PokemonType.module.css";
+import { useRouter } from "next/router";
 
 export async function getStaticPaths() {
   const maxPokemons = 251;
@@ -11,7 +12,6 @@ export async function getStaticPaths() {
   const data = await res.json();
 
   const paths = data.results.map((pokemon, index) => {
-    
     return {
       params: { pokemonId: (index + 1).toString() },
     };
@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -36,6 +36,12 @@ export async function getStaticProps(context) {
 }
 
 function Pokemons({ pokemon }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Carregando...</div>;
+  }
+
   return (
     <div className="flex flex-col items-center justify-center p-4">
       <h1 className="text-3xl font-bold uppercase bg-red-700 text-white p-4 rounded-xl">
